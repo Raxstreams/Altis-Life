@@ -12,10 +12,12 @@ disableSerialization;
 _info = [_this,0,[],[[]]] call BIS_fnc_param;
 _display = findDisplay 2400;
 _list = _display displayctrl 2401;
-_units = [];
-{
-	_units set[count _units, name _x];
-} foreach playableUnits;
+_units = [
+	(foreach playableUnits),
+	{
+		name _x
+	}
+] call FN_shellSort;
 
 {
 	_entry = _x;
